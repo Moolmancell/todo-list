@@ -1,3 +1,5 @@
+import "./ui"
+
 const LocalStorageAdaptor = (function() {
 
     function getKey(key) {
@@ -76,4 +78,4 @@ const createDefault = (function() {
     LocalStorageAdaptor.setKey("_default", { name: "_default", description: "", todo: [] });
 })();
 
-removeTodo("_default", 1)
+addProject("name", "blah blah")
