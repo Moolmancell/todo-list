@@ -24,7 +24,7 @@ function addProject(name, description) {
         console.log("Project already exists. Please choose a different name.");
         return;
     }
-    LocalStorageAdaptor.setKey(name, { name, description, todo: [] });
+    LocalStorageAdaptor.setKey(name, { name, todo: [] });
 }
 
 function addToDo(title, description, duedate, priority, proj = "_default") {
