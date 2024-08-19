@@ -5,7 +5,8 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./src/index.js",
-    ui: ".src/ui.js"
+    ui: ".src/ui.js",
+    logic: ".src/logic.js"
   },
   devtool: 'inline-source-map',
   output: {
