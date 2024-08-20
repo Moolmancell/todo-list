@@ -19,11 +19,16 @@ const LocalStorageAdaptor = (function() {
     }
 })();
 
-function addProject(name, description) {
+function addProject(name) {
     if (LocalStorageAdaptor.getKey(name)) {
         console.log("Project already exists. Please choose a different name.");
         return;
     }
+    
+    let newArray = LocalStorageAdaptor.getKey("_projects")["projects"];
+    newArray.push(name)
+
+    LocalStorageAdaptor.setKey("_projects", { projects: newArray});
     LocalStorageAdaptor.setKey(name, { name, todo: [] });
 }
 
