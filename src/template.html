@@ -132,9 +132,9 @@
       </div>
 
     <!--Task Body-->
-    <div class="accordion mt-3 w-75 m-auto" id="accordionExample">
-        <h1 class="mt-5 fw-bold">Tasks</h1>
-        <button type="button" class="btn btn-primary mb-4 mt-5 d-flex align-items-center justify-content-between" data-bs-toggle="modal" data-bs-target="#AddModal" data-bs-whatever="">
+    <!--<div class="tasks_container accordion mt-3 w-75 m-auto" id="accordionExample">
+        <h1 class="project_name mt-5 fw-bold">Tasks</h1>
+        <button type="button" class="add_task btn btn-primary mb-4 mt-5 d-flex align-items-center justify-content-between" data-bs-toggle="modal" data-bs-target="#AddModal" data-bs-whatever="">
             <span>Add Task</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
@@ -142,21 +142,23 @@
         </button>
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button fs-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              <span>Task 1</span>
-              <span class="badge text-bg-info ms-5">Low</span>
+            <button class="accordion-button fs-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+              <span class="task_title">Task 1</span>
+              <span class="priority_task_badge badge text-bg-info ms-5">Low</span>
             </button>
           </h2>
-          <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        -->
+          <!--the ID, data-bs-target, aria-controls of the container below should be unique-->
+          <!--<div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                 <br>
-                <button type="button" class="btn btn-danger btn-block mt-3 ms-right-2">Delete</button>
-                <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#EditModal" data-bs-whatever="@mdo">Edit</button>
-                <button type="button" class="btn btn-success mt-3">Done</button>
+                <button type="button" class="delete_task_button btn btn-danger btn-block mt-3 ms-right-2">Delete</button>
+                <button type="button" class="edit_task_button btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#EditModal" data-bs-whatever="@mdo">Edit</button>
+                <button type="button" class="done_task_button btn btn-success mt-3">Done</button>
             </div>
           </div>
         </div>
-    </div>
+    </div>-->
 </body>
 </html>

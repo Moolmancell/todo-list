@@ -32,14 +32,28 @@ function addProject(name) {
     LocalStorageAdaptor.setKey(name, { name, todo: [] });
 }
 
-function addToDo(title, description, duedate, priority, proj = "_default") {
+function addToDo(title, description, duedate, priority, proj = "_inbox") {
+
+    let todoExist = false;
+
     let project = LocalStorageAdaptor.getKey(proj);
     if (!project) {
         console.log("Project does not exist.");
         return;
     }
-    project.todo.push({ title, description, duedate, priority });
-    LocalStorageAdaptor.setKey(proj, project);
+
+    project.todo.forEach(element => {
+        if (element.title === title) {
+            todoExist = true;
+            console.log("todo title already given")
+            return
+        } 
+    });
+
+    if (!todoExist) {
+        project.todo.push({ title, description, duedate, priority });
+        LocalStorageAdaptor.setKey(proj, project);
+    }
 }
 
 function checkProject(name) {
@@ -81,3 +95,7 @@ export {
     removeTodo,
     removeProject
 }
+
+addToDo("money", "moeny", "today", 2)
+addToDo("no", "asd", "asd", 1)
+addToDo("23", "asd", "asd", 3)
