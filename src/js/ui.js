@@ -4,7 +4,8 @@ import {
     addToDo,
     checkProject,
     removeTodo,
-    removeProject
+    removeProject,
+    editTodo
 } from "./logic"
 
 const colorTheme = (()=>{
@@ -81,8 +82,10 @@ export function generateTasks(project, sort = "default") {
 
     // Create main container div
     let todos = project["todo"];
-    todos.sort(function(a,b) {return a.priority - b.priority})
-    console.log(todos);
+    if (sort === "default") {
+        todos.sort(function(a,b) {return a.priority - b.priority})
+    }
+    //console.log(todos);
     
 
     const container = document.createElement('div');
@@ -208,6 +211,12 @@ export function generateTasks(project, sort = "default") {
         const editButton = document.createElement('button');
         editButton.type = 'button';
         editButton.className = 'edit_task_button btn btn-primary mt-3 ms-2';
+
+        editButton.addEventListener("click", () => {
+            document.querySelector(".edit-save-button").dataset.todo = todo.title;
+            document.querySelector(".edit-save-button").dataset.project = project.name;
+        })
+
         editButton.dataset.bsToggle = 'modal';
         editButton.dataset.bsTarget = '#EditModal';
         editButton.dataset.bsWhatever = '@mdo';

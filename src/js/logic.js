@@ -56,6 +56,26 @@ function addToDo(title, description, duedate, priority, proj = "_inbox") {
     }
 }
 
+function editTodo(title, new_title, new_description, new_duedate, new_priority, proj = "_inbox") {
+    let project = LocalStorageAdaptor.getKey(proj);
+
+    const index = project.todo.findIndex(obj => obj.title === title);
+
+    if (index !== -1) {
+        project.todo[index] = {
+        ...project.todo[index],
+        ...{
+            title: new_title,
+            description: new_description,
+            duedate: new_duedate,
+            priority: new_priority
+        }
+        };
+    }
+
+    LocalStorageAdaptor.setKey(proj, project)
+}
+
 function checkProject(name) {
     const project = LocalStorageAdaptor.getKey(name);
     if (project) {
@@ -91,6 +111,7 @@ export {
     LocalStorageAdaptor,
     addProject,
     addToDo,
+    editTodo,
     checkProject,
     removeTodo,
     removeProject
