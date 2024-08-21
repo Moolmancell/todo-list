@@ -95,6 +95,7 @@ function checkProject(name) {
 
 function removeTodo(projectName, todoIndex) {
     let project = LocalStorageAdaptor.getKey(projectName);
+    const index = project.todo.findIndex(obj => obj.title === title)
     if (!project) {
         console.log("Project does not exist");
         return;
@@ -103,7 +104,7 @@ function removeTodo(projectName, todoIndex) {
         console.log("Invalid to-do index");
         return;
     }
-    project.todo.splice(todoIndex, 1);
+    project.todo.splice(index, 1);
     LocalStorageAdaptor.setKey(projectName, project);
 }
 
