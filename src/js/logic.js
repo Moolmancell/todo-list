@@ -1,5 +1,3 @@
-import { generateProjectsSelection } from "./ui";
-
 const LocalStorageAdaptor = (function() {
 
     function getKey(key) {
@@ -34,22 +32,20 @@ function addProject(name) {
     LocalStorageAdaptor.setKey(name, { name, todo: [] });
 }
 
-function todoExist(project) {
+function todoExist(project, title) {
     let todoExist = false;
     project.todo.forEach(element => {
         if (element.title === title) {
             todoExist = true;
-            //console.log("todo title already given")
+            console.log("todo title already given")
             return
         } 
     });
 
-    return todoExist
+    return !todoExist
 }
 
 function addToDo(title, description, duedate, priority, proj = "_inbox") {
-
-    let todoExist = false;
 
     let project = LocalStorageAdaptor.getKey(proj);
     if (!project) {
@@ -57,7 +53,7 @@ function addToDo(title, description, duedate, priority, proj = "_inbox") {
         return;
     }
 
-    if (todoExist(project)) {
+    if (todoExist(project, title)) {
         project.todo.push({ title, description, duedate, priority });
         LocalStorageAdaptor.setKey(proj, project);
     }
@@ -65,7 +61,6 @@ function addToDo(title, description, duedate, priority, proj = "_inbox") {
 
 function editTodo(title, new_title, new_description, new_duedate, new_priority, proj = "_inbox") {
     let project = LocalStorageAdaptor.getKey(proj);
-    let todoExist = false;
     const index = project.todo.findIndex(obj => obj.title === title);
 
     if (index !== -1) {
@@ -79,7 +74,7 @@ function editTodo(title, new_title, new_description, new_duedate, new_priority, 
         }
         };
     }
-    if (todoExist(project)) {
+    if (todoExist(project, new_title)) {
         LocalStorageAdaptor.setKey(proj, project)
     }
 }
@@ -127,6 +122,29 @@ export {
     removeTodo,
     removeProject
 }
+
+const initialize = (function() {
+    if (LocalStorageAdaptor.getKey("_inbox")) {
+        console.log("_inbox already exists in local storage");
+        return;
+    }
+    LocalStorageAdaptor.setKey("_inbox", { name: "_inbox", todo: [] });
+
+    if (LocalStorageAdaptor.getKey("_mode")) {
+        console.log("_mode already exists in local storage")
+        return
+    } else {
+        LocalStorageAdaptor.setKey("_mode", "");
+    }
+
+    if (LocalStorageAdaptor.getKey("_projects")) {
+        console.log("_projects already exists in local storage");
+        return;
+    } else {
+        LocalStorageAdaptor.setKey("_projects", {projects: []});
+    }
+
+})();
 
 addToDo("money", "moeny", "today", 2)
 addToDo("no", "asd", "asd", 1)
