@@ -1,6 +1,7 @@
 import {
     LocalStorageAdaptor,
     addProject,
+    todoExist,
     addToDo,
     checkProject,
     removeTodo,
@@ -241,3 +242,29 @@ export function generateTasks(project, sort = "default") {
     // Append the container to the body (or another parent element as needed)
     document.body.appendChild(container);
 }
+
+document.querySelector(".edit-save-button").addEventListener("click", (e) => {
+    
+    const currentTitle = e.target.dataset.todo;
+    const newTitle = document.getElementById("edit-task-title");
+    const newDescription = document.getElementById("edit-task-description");
+    const newDueDate = document.getElementById("edit-task-dueDate");
+    const newPriority = document.getElementById("edit-task-priority");
+    const project =  e.target.dataset.project;
+
+    if (currentTitle.value || newTitle.value || 
+        newDescription.value || newDescription.value ||
+        newDueDate || newPriority || project) {
+
+        }
+
+    editTodo(
+        currentTitle,
+        newTitle.value,
+        newDescription.value,
+        newDueDate.value,
+        newPriority.value,
+        project
+    );
+   // generateTasks(e.target.dataset.project.value)
+})

@@ -119,6 +119,7 @@ function removeProject(projectName) {
 export {
     LocalStorageAdaptor,
     addProject,
+    todoExist,
     addToDo,
     editTodo,
     checkProject,
