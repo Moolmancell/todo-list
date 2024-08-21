@@ -1,3 +1,5 @@
+import { generateProjectsSelection } from "./ui";
+
 const LocalStorageAdaptor = (function() {
 
     function getKey(key) {
@@ -32,6 +34,19 @@ function addProject(name) {
     LocalStorageAdaptor.setKey(name, { name, todo: [] });
 }
 
+function todoExist(project) {
+    let todoExist = false;
+    project.todo.forEach(element => {
+        if (element.title === title) {
+            todoExist = true;
+            //console.log("todo title already given")
+            return
+        } 
+    });
+
+    return todoExist
+}
+
 function addToDo(title, description, duedate, priority, proj = "_inbox") {
 
     let todoExist = false;
@@ -42,15 +57,7 @@ function addToDo(title, description, duedate, priority, proj = "_inbox") {
         return;
     }
 
-    project.todo.forEach(element => {
-        if (element.title === title) {
-            todoExist = true;
-            console.log("todo title already given")
-            return
-        } 
-    });
-
-    if (!todoExist) {
+    if (todoExist(project)) {
         project.todo.push({ title, description, duedate, priority });
         LocalStorageAdaptor.setKey(proj, project);
     }
@@ -58,7 +65,7 @@ function addToDo(title, description, duedate, priority, proj = "_inbox") {
 
 function editTodo(title, new_title, new_description, new_duedate, new_priority, proj = "_inbox") {
     let project = LocalStorageAdaptor.getKey(proj);
-
+    let todoExist = false;
     const index = project.todo.findIndex(obj => obj.title === title);
 
     if (index !== -1) {
@@ -72,8 +79,9 @@ function editTodo(title, new_title, new_description, new_duedate, new_priority, 
         }
         };
     }
-
-    LocalStorageAdaptor.setKey(proj, project)
+    if (todoExist(project)) {
+        LocalStorageAdaptor.setKey(proj, project)
+    }
 }
 
 function checkProject(name) {
@@ -100,7 +108,8 @@ function removeTodo(projectName, todoIndex) {
 }
 
 function removeProject(projectName) {
-    if (!LocalStorageAdaptor.getKey(projectName)) {
+    let project = LocalStorageAdaptor.getKey(projectName)
+    if (todoExist(project)) {
         console.log("Project does not exist");
         return;
     }
