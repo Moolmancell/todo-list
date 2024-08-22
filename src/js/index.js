@@ -10,4 +10,4 @@ import { generateProjectsSelection } from './ui';
 import { generateTasks } from './ui';
 
 generateProjectsSelection("_projects");
-generateTasks(LocalStorageAdaptor.getKey("_inbox"));
+//generateTasks(LocalStorageAdaptor.getKey("_inbox"));

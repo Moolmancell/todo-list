@@ -63,15 +63,6 @@
     </div>
 
     <!-- Modal trigger button -->
-    <button
-      type="button"
-      class="btn btn-primary btn-lg"
-      data-bs-toggle="modal"
-      data-bs-target="#AddModal"
-    >
-      Launch
-    </button>
-    
     <!-- Modal Body -->
     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
     <div
@@ -128,12 +119,17 @@
     <!--Task Body-->
     <div class="tasks_container accordion mt-3 w-75 m-auto" id="accordionExample">
         <h1 class="project_name mt-5 fw-bold">Tasks</h1>
-        <button type="button" class="add_task btn btn-primary mb-4 mt-5 d-flex align-items-center justify-content-between" data-bs-toggle="modal" data-bs-target="#AddModal" data-bs-whatever="">
-            <span>Add Task</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-              </svg>
-        </button>
+        <button
+      type="button"
+      class="add_task btn btn-primary mb-4 mt-5 d-flex align-items-center justify-content-between"
+      data-bs-toggle="modal"
+      data-bs-target="#AddModal"
+    >
+      <span>Add Task</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+      </svg>
+    </button>
     </div>
         
           <!--the ID, data-bs-target, aria-controls of the container below should be unique-->
