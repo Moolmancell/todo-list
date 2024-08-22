@@ -62,99 +62,71 @@
         </div>
     </div>
 
-
-    <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Task</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <p>warning</p>
-                <div class="mb-3">
-                  <label for="edit-task-title" class="col-form-label">Title</label>
-                  <input type="text" class="form-control" id="edit-task-title">
-                </div>
-                <div class="mb-3">
-                  <label for="edit-task-description" class="col-form-label">Description</label>
-                  <textarea class="form-control" id="edit-task-description"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="edit-due-date" class="col-form-label">Due</label>
-                    <input type="date" class="form-control" id="edit-task-dueDate">
-                </div>
-                <div class="mb-3">
-                    <label for="edit-task-priority" class="col-form-label">Priority</label>
-                    <select class="form-select" aria-label="Default select example" id="edit-task-priority">
-                        <option value="1">High</option>
-                        <option value="2">Med</option>
-                        <option value="3" selected>Low</option>
-                    </select>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="edit-save-button btn btn-primary" data-project="" data-todo="">Save</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Title</label>
-                  <input type="text" class="form-control" id="recipient-name">
-                </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Description</label>
-                  <textarea class="form-control" id="message-text"></textarea>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save</button>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Modal trigger button -->
+    <button
+      type="button"
+      class="btn btn-primary btn-lg"
+      data-bs-toggle="modal"
+      data-bs-target="#AddModal"
+    >
+      Launch
+    </button>
+    
+    <!-- Modal Body -->
+    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+    <div
+      class="modal fade"
+      id="AddModal"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
       
-      <div class="modal fade" id="AddProjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Add Project</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Title</label>
-                  <input type="text" class="form-control" id="recipient-name">
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send message</button>
-            </div>
+      role="dialog"
+      aria-labelledby="AddModalTitle"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+        role="document"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="AddModalTitle">
+              Modal title
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Body</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="AddTaskButton">Add Task</button>
           </div>
         </div>
       </div>
+    </div>
+    
+    <!-- Optional: Place to the bottom of scripts -->
+    <script>
+      const myModal = new bootstrap.Modal(
+        document.getElementById("modalId"),
+        options,
+      );
+    </script>
+    
 
     <!--Task Body-->
-    <!--<div class="tasks_container accordion mt-3 w-75 m-auto" id="accordionExample">
+    <div class="tasks_container accordion mt-3 w-75 m-auto" id="accordionExample">
         <h1 class="project_name mt-5 fw-bold">Tasks</h1>
         <button type="button" class="add_task btn btn-primary mb-4 mt-5 d-flex align-items-center justify-content-between" data-bs-toggle="modal" data-bs-target="#AddModal" data-bs-whatever="">
             <span>Add Task</span>
@@ -162,14 +134,8 @@
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
               </svg>
         </button>
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button fs-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-              <span class="task_title">Task 1</span>
-              <span class="priority_task_badge badge text-bg-info ms-5">Low</span>
-            </button>
-          </h2>
-        -->
+    </div>
+        
           <!--the ID, data-bs-target, aria-controls of the container below should be unique-->
           <!--<div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
             <div class="accordion-body">

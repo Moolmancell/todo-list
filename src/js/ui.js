@@ -1,3 +1,5 @@
+import * as bootstrap from 'bootstrap' 
+
 import {
     LocalStorageAdaptor,
     addProject,
@@ -50,36 +52,10 @@ export function generateProjectsSelection(project) {
 }
 
 export function generateTasks(project, sort = "default") {
-    /* 
-    <div class="tasks_container accordion mt-3 w-75 m-auto" id="accordionExample">
-        <h1 class="project_name mt-5 fw-bold">Tasks</h1>
-        <button type="button" class="add_task btn btn-primary mb-4 mt-5 d-flex align-items-center justify-content-between" data-bs-toggle="modal" data-bs-target="#AddModal" data-bs-whatever="">
-            <span>Add Task</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-              </svg>
-        </button>
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button fs-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-              <span class="task_title">Task 1</span>
-              <span class="priority_task_badge badge text-bg-info ms-5">Low</span>
-            </button>
-          </h2>
-          <!--the ID, data-bs-target, aria-controls of the container below should be unique-->
-          <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <p class="task_description">Description</p>
-                <p class="task_deadline">Deadline</p>
-                <br>
-                <button type="button" class="delete_task_button btn btn-danger btn-block mt-3 ms-right-2">Delete</button>
-                <button type="button" class="edit_task_button btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#EditModal" data-bs-whatever="@mdo">Edit</button>
-                <button type="button" class="done_task_button btn btn-success mt-3">Done</button>
-            </div>
-          </div>
-        </div>
-    </div>
-    */
+
+    if (document.getElementById("accordionExample")) {
+        document.getElementById("accordionExample").remove();
+    }
 
     // Create main container div
     let todos = project["todo"];
@@ -214,8 +190,7 @@ export function generateTasks(project, sort = "default") {
         editButton.className = 'edit_task_button btn btn-primary mt-3 ms-2';
 
         editButton.addEventListener("click", () => {
-            document.querySelector(".edit-save-button").dataset.todo = todo.title;
-            document.querySelector(".edit-save-button").dataset.project = project.name;
+            
         })
 
         editButton.dataset.bsToggle = 'modal';
@@ -242,29 +217,3 @@ export function generateTasks(project, sort = "default") {
     // Append the container to the body (or another parent element as needed)
     document.body.appendChild(container);
 }
-
-document.querySelector(".edit-save-button").addEventListener("click", (e) => {
-    
-    const currentTitle = e.target.dataset.todo;
-    const newTitle = document.getElementById("edit-task-title");
-    const newDescription = document.getElementById("edit-task-description");
-    const newDueDate = document.getElementById("edit-task-dueDate");
-    const newPriority = document.getElementById("edit-task-priority");
-    const project =  e.target.dataset.project;
-
-    if (currentTitle.value || newTitle.value || 
-        newDescription.value || newDescription.value ||
-        newDueDate || newPriority || project) {
-
-        }
-
-    editTodo(
-        currentTitle,
-        newTitle.value,
-        newDescription.value,
-        newDueDate.value,
-        newPriority.value,
-        project
-    );
-   // generateTasks(e.target.dataset.project.value)
-})
