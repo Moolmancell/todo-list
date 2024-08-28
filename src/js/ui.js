@@ -32,6 +32,11 @@ export function generateProjectsSelection(project) {
         return;
     }
     if (LocalStorageAdaptor.getKey(project)["projects"]) {
+
+        document.querySelectorAll(".list-group._project-group button").forEach(element => {
+            element.remove()
+        });
+
         LocalStorageAdaptor.getKey(project)["projects"].forEach(project => {
             const button = document.createElement("button");
             button.setAttribute("type", "button");
