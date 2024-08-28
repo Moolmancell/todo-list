@@ -65,16 +65,16 @@ function editTodo(title, new_title, new_description, new_duedate, new_priority, 
 
     if (todoExist(project, new_title)) {
         if (index !== -1) {
-            project.todo[index] = {
-            ...project.todo[index],
-            ...{
-                title: new_title,
-                description: new_description,
-                duedate: new_duedate,
-                priority: new_priority
-            }
-            };
+        project.todo[index] = {
+        ...project.todo[index],
+        ...{
+            title: new_title,
+            description: new_description,
+            duedate: new_duedate,
+            priority: new_priority
         }
+        };
+    }
         LocalStorageAdaptor.setKey(proj, project)
     }
 }
@@ -83,20 +83,22 @@ function checkProject(name) {
     const project = LocalStorageAdaptor.getKey(name);
     if (project) {
         console.log(project);
+        return true
     } else {
         console.log("Project does not exist.");
+        return false
     }
 }
 
-function removeTodo(projectName, todoIndex) {
+function removeTodo(projectName, title) {
     let project = LocalStorageAdaptor.getKey(projectName);
     const index = project.todo.findIndex(obj => obj.title === title)
     if (!project) {
         console.log("Project does not exist");
         return;
     }
-    if (todoIndex < 0 || todoIndex >= project.todo.length) {
-        console.log("Invalid to-do index");
+    if (todoExist(project, title)) {
+        console.log("Invalid to-do");
         return;
     }
     project.todo.splice(index, 1);
@@ -105,7 +107,7 @@ function removeTodo(projectName, todoIndex) {
 
 function removeProject(projectName) {
     let project = LocalStorageAdaptor.getKey(projectName)
-    if (todoExist(project)) {
+    if (checkProject(projectName)) {
         console.log("Project does not exist");
         return;
     }

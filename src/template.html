@@ -77,13 +77,13 @@
       aria-hidden="true"
     >
       <div
-        class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+        class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered modal-sm"
         role="document"
       >
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="AddModalTitle">
-              Modal title
+              Add Task
             </h5>
             <button
               type="button"
@@ -92,7 +92,30 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">Body</div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="add-task-title" class="col-form-label">Title:</label>
+                <input type="text" class="form-control" id="add-task-title">
+              </div>
+              <div class="mb-3">
+                <label for="add-task-description" class="col-form-label">Description:</label>
+                <textarea class="form-control" id="add-task-description"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="add-task-date" class="col-form-label">Due:</label>
+                <input type="date" class="form-control" id="add-task-date">
+              </div>
+              <div class="mb-3">
+                <label for="add-task-priority" class="col-form-label">Priority:</label>
+                <select id="add-task-priority" class="form-select" aria-label="selectform">
+                  <option class="default_select" value="3">Low</option>
+                  <option value="2">Med</option>
+                  <option value="1">High</option>
+                </select>
+              </div>
+            </form>
+          </div>
           <div class="modal-footer">
             <button
               type="button"
@@ -101,7 +124,7 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary" id="AddTaskButton">Add Task</button>
+            <button type="button" class="btn btn-primary" id="AddTaskButton" data-target="">Add Task</button>
           </div>
         </div>
       </div>
@@ -109,21 +132,20 @@
     
     <!-- Optional: Place to the bottom of scripts -->
     <script>
-      const myModal = new bootstrap.Modal(
-        document.getElementById("modalId"),
-        options,
-      );
+      /*
+      */
     </script>
     
 
     <!--Task Body-->
-    <div class="tasks_container accordion mt-3 w-75 m-auto" id="accordionExample">
-        <h1 class="project_name mt-5 fw-bold">Tasks</h1>
+    <div class="accordion mt-3 w-75 m-auto" id="accordionContainer">
+        <h1 class="mt-5 fw-bold" id="projectNameID">Tasks</h1>
         <button
       type="button"
       class="add_task btn btn-primary mb-4 mt-5 d-flex align-items-center justify-content-between"
       data-bs-toggle="modal"
       data-bs-target="#AddModal"
+      id="AddTaskButtonModal"
     >
       <span>Add Task</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">

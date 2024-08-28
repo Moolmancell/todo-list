@@ -1,15 +1,11 @@
 import * as bootstrap from 'bootstrap' 
 
-import {
-    LocalStorageAdaptor,
-    addProject,
-    todoExist,
-    addToDo,
-    checkProject,
-    removeTodo,
-    removeProject,
-    editTodo
-} from "./logic"
+import {LocalStorageAdaptor} from "./logic"
+
+export let currentProject = "_inbox";
+export function changeCurrentProject(value) {
+    currentProject = value;
+}
 
 const colorTheme = (()=>{
     if (LocalStorageAdaptor.getKey("_mode") === "dark") {
@@ -30,9 +26,7 @@ document.querySelector(".dropdown-item.dark").addEventListener("click", () => {
 })
 
 export function generateProjectsSelection(project) {
-    /*<button type="button" class="list-group-item list-group-item-action" data-bs-dismiss="offcanvas">
-    <span>The current button</span>
-    </button>*/
+
     if (!project) {
         console.log("project not found at generateProjectsSelection(project)")
         return;
@@ -53,62 +47,26 @@ export function generateProjectsSelection(project) {
 
 export function generateTasks(project, sort = "default") {
 
-    if (document.getElementById("accordionExample")) {
-        document.getElementById("accordionExample").remove();
+    if (document.querySelector(".accordion-item")) {
+        document.querySelectorAll(".accordion-item").forEach(element => {
+            element.remove()
+        });
     }
 
-    // Create main container div
     let todos = project["todo"];
     if (sort === "default") {
         todos.sort(function(a,b) {return a.priority - b.priority})
     }
-    //console.log(todos);
     
 
-    const container = document.createElement('div');
-    container.className = 'tasks_container accordion mt-3 w-75 m-auto';
-    container.id = 'accordionExample';
+    const container = document.getElementById("accordionContainer");
 
-    // Create and append the project name header
-    const projectName = document.createElement('h1');
-    projectName.className = 'project_name mt-5 fw-bold';
+    const projectName = document.getElementById("projectNameID");
     if (project.name === "_inbox") {
         projectName.textContent = "Tasks";
     } else {
         projectName.textContent = project.name;
     }
-    container.appendChild(projectName);
-
-    // Create and append the add task button
-    const addTaskButton = document.createElement('button');
-    addTaskButton.type = 'button';
-    addTaskButton.className = 'add_task btn btn-primary mb-4 mt-5 d-flex align-items-center justify-content-between';
-    addTaskButton.dataset.bsToggle = 'modal';
-    addTaskButton.dataset.bsTarget = '#AddModal';
-    addTaskButton.dataset.bsWhatever = '';
-
-    // Create and append span for "Add Task"
-    const addTaskSpan = document.createElement('span');
-    addTaskSpan.textContent = 'Add Task';
-    addTaskButton.appendChild(addTaskSpan);
-
-    // Create and append SVG icon
-    const svgIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svgIcon.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-    svgIcon.setAttribute('width', '16');
-    svgIcon.setAttribute('height', '16');
-    svgIcon.setAttribute('fill', 'currentColor');
-    svgIcon.classList.add('bi');
-    svgIcon.classList.add('bi-plus');
-    svgIcon.setAttribute('viewBox', '0 0 16 16');
-
-    // Create and append path to SVG
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', 'M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4');
-    svgIcon.appendChild(path);
-    addTaskButton.appendChild(svgIcon);
-
-    container.appendChild(addTaskButton);
 
     let idNumber = 0;
     todos.forEach(todo => {
@@ -213,7 +171,4 @@ export function generateTasks(project, sort = "default") {
         idNumber+=1;
     });
     
-
-    // Append the container to the body (or another parent element as needed)
-    document.body.appendChild(container);
 }

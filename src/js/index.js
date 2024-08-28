@@ -4,10 +4,11 @@ import * as bootstrap from 'bootstrap'
 
 import "./ui"
 import "./logic"
+import "./addTask"
 
 import { LocalStorageAdaptor } from "./logic";
 import { generateProjectsSelection } from './ui';
 import { generateTasks } from './ui';
 
 generateProjectsSelection("_projects");
-//generateTasks(LocalStorageAdaptor.getKey("_inbox"));
+generateTasks(LocalStorageAdaptor.getKey("_inbox"));
