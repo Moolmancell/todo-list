@@ -1,6 +1,5 @@
-import * as bootstrap from 'bootstrap' 
-
 import {LocalStorageAdaptor} from "./logic"
+import { selectProject } from "./selectProject";
 
 export let currentProject = "_inbox";
 export function changeCurrentProject(value) {
@@ -44,7 +43,11 @@ export function generateProjectsSelection(project) {
             button.classList.add("list-group-item-action");
             button.setAttribute("data-bs-dismiss", "offcanvas");
             button.textContent = project;   
-    
+            
+            button.addEventListener("click", () => {
+                selectProject(project)
+            })
+
             document.querySelector(".list-group._project-group").appendChild(button)
             });
     }
