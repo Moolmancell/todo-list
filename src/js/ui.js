@@ -1,6 +1,7 @@
 import {LocalStorageAdaptor} from "./logic"
 import { selectProject } from "./selectProject";
 import { removeTasks } from "./deleteTask";
+import { todoFinish } from "./todoFinish";
 
 export let currentProject = "_inbox";
 export function changeCurrentProject(value) {
@@ -119,6 +120,16 @@ export function generateTasks(project, sort = "default") {
         accordionHeader.appendChild(accordionButton);
         accordionItem.appendChild(accordionHeader);
 
+        const smallElement = document.createElement('small');
+
+        // Add the classes
+        smallElement.className = 'd-none ms-5 px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2';
+
+        // Set the text content
+        smallElement.textContent = 'Done';
+        // Append the element to the container
+        accordionButton.appendChild(smallElement);
+
         // Create and append the accordion collapse
         const accordionCollapse = document.createElement('div');
         accordionCollapse.id = `collapse${idNumber}`;
@@ -175,6 +186,11 @@ export function generateTasks(project, sort = "default") {
         doneButton.type = 'button';
         doneButton.className = 'done_task_button btn btn-success mt-3 ms-2';
         doneButton.textContent = 'Done';
+
+        doneButton.addEventListener("click", () => {
+            todoFinish(smallElement);
+        })
+
         accordionBody.appendChild(doneButton);
 
         accordionCollapse.appendChild(accordionBody);
