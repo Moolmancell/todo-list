@@ -1,5 +1,6 @@
 import {LocalStorageAdaptor} from "./logic"
 import { selectProject } from "./selectProject";
+import { removeTasks } from "./deleteTask";
 
 export let currentProject = "_inbox";
 export function changeCurrentProject(value) {
@@ -149,6 +150,10 @@ export function generateTasks(project, sort = "default") {
         deleteButton.className = 'delete_task_button btn btn-danger btn-block mt-3 ms-right-2';
         deleteButton.textContent = 'Delete';
         accordionBody.appendChild(deleteButton);
+
+        deleteButton.addEventListener("click", () => {
+            removeTasks(currentProject, todo.title)
+        })
 
         // Create and append edit task button
         const editButton = document.createElement('button');
