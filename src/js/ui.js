@@ -124,7 +124,13 @@ export function generateTasks(project, sort = "default") {
 
         // Add the classes
         smallElement.className = 'd-none ms-5 px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2';
-
+        if (todo.status === "done") {
+            smallElement.classList.remove("d-none")
+        } else {
+            if (!smallElement.classList.contains("d-none")) {
+                smallElement.classList.add("d-none");
+            } 
+        }
         // Set the text content
         smallElement.textContent = 'Done';
         // Append the element to the container
@@ -188,7 +194,7 @@ export function generateTasks(project, sort = "default") {
         doneButton.textContent = 'Done';
 
         doneButton.addEventListener("click", () => {
-            todoFinish(smallElement);
+            todoFinish(smallElement, project, todo.title);
         })
 
         accordionBody.appendChild(doneButton);
