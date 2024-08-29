@@ -45,7 +45,7 @@ function todoExist(project, title) {
     return !todoExist
 }
 
-function addToDo(title, description, duedate, priority, proj = "_inbox") {
+function addToDo(title, description, duedate, priority, proj = "_inbox", status = "undone") {
 
     let project = LocalStorageAdaptor.getKey(proj);
     if (!project) {
@@ -54,7 +54,7 @@ function addToDo(title, description, duedate, priority, proj = "_inbox") {
     }
 
     if (todoExist(project, title)) {
-        project.todo.push({ title, description, duedate, priority });
+        project.todo.push({ title, description, duedate, priority, status});
         LocalStorageAdaptor.setKey(proj, project);
     }
 }
