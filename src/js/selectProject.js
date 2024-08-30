@@ -8,10 +8,21 @@ function updateProjectDisplay(projectName) {
     projectNameElement.textContent = projectName;
 }
 
+function showDeleteProjectButton() {
+    const button = document.getElementById("deleteProjectButton")
+    button.classList.remove("d-none")
+}
+
+function hideDeleteProjectButton() {
+    const button = document.getElementById("deleteProjectButton")
+    button.classList.add("d-none")
+}
+
 // Function to handle project selection
 export function selectProject(project) {
     updateProjectDisplay(project);
     changeCurrentProject(project);
+    showDeleteProjectButton();
     generateTasks(LocalStorageAdaptor.getKey(project));
 }
 
@@ -19,6 +30,7 @@ export function selectProject(project) {
 function handleInboxClick() {
     updateProjectDisplay("Tasks");
     changeCurrentProject("_inbox");
+    hideDeleteProjectButton();
     generateTasks(LocalStorageAdaptor.getKey("_inbox"));
 }
 
