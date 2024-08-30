@@ -177,6 +177,74 @@
       </div>
     </div>
     
+    
+    <!-- Modal Body -->
+    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+    <div
+      class="modal fade"
+      id="editTaskModal"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      
+      role="dialog"
+      aria-labelledby="modalTitleId"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered modal-sm"
+        role="document"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitleId">
+              Modal title
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="edit-task-title" class="col-form-label">Title:</label>
+                <input type="text" class="form-control" id="edit-task-title">
+              </div>
+              <div class="mb-3">
+                <label for="edit-task-description" class="col-form-label">Description:</label>
+                <textarea class="form-control" id="edit-task-description"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="edit-task-date" class="col-form-label">Due:</label>
+                <input type="date" class="form-control" id="edit-task-date">
+              </div>
+              <div class="mb-3">
+                <label for="edit-task-priority" class="col-form-label">Priority:</label>
+                <select id="edit-task-priority" class="form-select" aria-label="selectform">
+                  <option class="default_select" value="3">Low</option>
+                  <option value="2">Med</option>
+                  <option value="1">High</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="save-edit-button-modal">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 
     <!--Task Body-->
     <div class="accordion mt-3 w-75 m-auto" id="accordionContainer">

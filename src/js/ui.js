@@ -2,6 +2,7 @@ import {LocalStorageAdaptor} from "./logic"
 import { selectProject } from "./selectProject";
 import { removeTasks } from "./deleteTask";
 import { todoFinish } from "./todoFinish";
+import { editTodo } from "./editTodo";
 
 export let currentProject = "_inbox";
 export function changeCurrentProject(value) {
@@ -178,12 +179,11 @@ export function generateTasks(project, sort = "default") {
         editButton.className = 'edit_task_button btn btn-primary mt-3 ms-2';
 
         editButton.addEventListener("click", () => {
-            
+            editTodo(project, todo.title);
         })
 
         editButton.dataset.bsToggle = 'modal';
-        editButton.dataset.bsTarget = '#EditModal';
-        editButton.dataset.bsWhatever = '@mdo';
+        editButton.dataset.bsTarget = '#editTaskModal';
         editButton.textContent = 'Edit';
         accordionBody.appendChild(editButton);
 
