@@ -1,7 +1,7 @@
 import { removeProject } from "./logic";
 import { currentProject } from "./ui";
 import { generateProjectsSelection } from "./ui";
-import { emptyScreen } from "./emptyScreen";
+import { emptyScreen } from "./screens";
 
 const deleteProjectButton = document.getElementById("deleteProjectButton")
 

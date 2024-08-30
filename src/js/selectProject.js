@@ -1,7 +1,7 @@
 import { generateTasks } from "./ui";
 import { LocalStorageAdaptor } from "./logic";
 import { changeCurrentProject } from "./ui";
-import { showScreen } from "./emptyScreen";
+import { showScreen } from "./screens";
 // Function to update the project display
 function updateProjectDisplay(projectName) {
     const projectNameElement = document.getElementById("projectNameID");
