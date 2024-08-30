@@ -6,6 +6,7 @@ import "./ui"
 import "./logic"
 import "./addTask"
 import "./addProject"
+import "./deleteProject"
 
 import { LocalStorageAdaptor } from "./logic";
 import { generateProjectsSelection } from './ui';

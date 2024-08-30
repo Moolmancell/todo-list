@@ -1,7 +1,7 @@
 import { generateTasks } from "./ui";
 import { LocalStorageAdaptor } from "./logic";
 import { changeCurrentProject } from "./ui";
-
+import { showScreen } from "./emptyScreen";
 // Function to update the project display
 function updateProjectDisplay(projectName) {
     const projectNameElement = document.getElementById("projectNameID");
@@ -23,6 +23,7 @@ export function selectProject(project) {
     updateProjectDisplay(project);
     changeCurrentProject(project);
     showDeleteProjectButton();
+    showScreen()
     generateTasks(LocalStorageAdaptor.getKey(project));
 }
 
@@ -31,6 +32,7 @@ function handleInboxClick() {
     updateProjectDisplay("Tasks");
     changeCurrentProject("_inbox");
     hideDeleteProjectButton();
+    showScreen();
     generateTasks(LocalStorageAdaptor.getKey("_inbox"));
 }
 

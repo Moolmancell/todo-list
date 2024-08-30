@@ -105,12 +105,14 @@ function removeTodo(projectName, title) {
     LocalStorageAdaptor.setKey(projectName, project);
 }
 
-function removeProject(projectName) {
-    let project = LocalStorageAdaptor.getKey(projectName)
-    if (checkProject(projectName)) {
+function removeProject(projectName, projectListing) {
+    let projectList = LocalStorageAdaptor.getKey(projectListing)
+    if (!checkProject(projectName)) {
         console.log("Project does not exist");
         return;
     }
+    projectList.projects = projectList.projects.filter(e => e !== projectName);
+    LocalStorageAdaptor.setKey(projectListing, projectList);
     LocalStorageAdaptor.removeKey(projectName);
 }
 
