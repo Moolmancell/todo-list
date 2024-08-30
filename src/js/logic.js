@@ -147,7 +147,3 @@ const initialize = (function() {
     }
 
 })();
-
-addToDo("money", "moeny", "today", 2)
-addToDo("no", "asd", "asd", 1)
-addToDo("23", "asd", "asd", 3)
