@@ -1,39 +1,53 @@
-import * as bootstrap from 'bootstrap'
+import * as bootstrap from 'bootstrap';
 import { addToDo } from './logic';
 import { LocalStorageAdaptor } from './logic';
 import { generateTasks } from './ui';
 import { currentProject } from './ui';
 
-/* start modal */
+const addTaskModal = new bootstrap.Modal(document.getElementById("AddModal"));
 
-const addTaskModal = new bootstrap.Modal(
-    document.getElementById("AddModal"));
-
-const AddTaskButtonModal = document.getElementById("AddTaskButtonModal");
-AddTaskButtonModal.addEventListener("click", (e) => {
-    document.getElementById("AddTaskButton").dataset.target = currentProject;
-});
-
-const modal = document.getElementById("AddModal");
-modal.addEventListener("hide.bs.modal", () => {
+function clearForm() {
     document.body.querySelectorAll("form .form-control").forEach(element => {
         element.value = "";
     });
-})
+}
 
-const AddTaskButton = document.getElementById("AddTaskButton");
-AddTaskButton.addEventListener("click", () => {
-    const title = document.getElementById("add-task-title");
-    const description = document.getElementById("add-task-description")
-    const due = document.getElementById("add-task-date")
-    const priority = document.getElementById("add-task-priority")
+function getFormValues() {
+    return {
+        title: document.getElementById("add-task-title").value,
+        description: document.getElementById("add-task-description").value,
+        due: document.getElementById("add-task-date").value,
+        priority: +document.getElementById("add-task-priority").value
+    };
+}
 
-    if (title.value && description.value &&
-        due.value && priority.value) {
-            addToDo(title.value, description.value, due.value, +priority.value, currentProject)
-            addTaskModal.hide()
-            generateTasks(LocalStorageAdaptor.getKey(currentProject));
-        } else {
-            alert("Fill all the required fields")
-        }
-});  
+function validateForm(values) {
+    return values.title && values.description && values.due && values.priority;
+}
+
+function handleAddTask() {
+    const values = getFormValues();
+    
+    if (validateForm(values)) {
+        addToDo(values.title, values.description, values.due, values.priority, currentProject);
+        addTaskModal.hide();
+        generateTasks(LocalStorageAdaptor.getKey(currentProject));
+    } else {
+        alert("Fill all the required fields");
+    }
+}
+
+function setupEventListeners() {
+    const addTaskButtonModal = document.getElementById("AddTaskButtonModal");
+    addTaskButtonModal.addEventListener("click", () => {
+        document.getElementById("AddTaskButton").dataset.target = currentProject;
+    });
+
+    const modal = document.getElementById("AddModal");
+    modal.addEventListener("hide.bs.modal", clearForm);
+
+    const addTaskButton = document.getElementById("AddTaskButton");
+    addTaskButton.addEventListener("click", handleAddTask);
+}
+
+setupEventListeners();
