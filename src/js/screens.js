@@ -1,18 +1,12 @@
-const addTaskButton = document.getElementById("AddTaskButtonModal");
-const projName = document.getElementById("projectNameID")
+const accordion = document.getElementById("accordionContainer");
+const emptyText = document.getElementById("emptyh1");
 
 export function emptyScreen() {
-    addTaskButton.classList.add("d-none");
-
-    projName.className = "position-absolute top-50 start-50 translate-middle";
-    projName.style.opacity = "0.5"
-    projName.textContent = "Empty please choose a project :)"
+    accordion.classList.add("d-none");
+    emptyText.classList.remove("d-none");
 }
 
 export function showScreen() {
-    addTaskButton.classList.remove("d-none");
-
-    projName.className = "mt-5 fw-bold d-inline-block";
-    projName.style.opacity = "1"
-    projName.textContent = ""
+    accordion.classList.remove("d-none");
+    emptyText.classList.add("d-none");
 }
